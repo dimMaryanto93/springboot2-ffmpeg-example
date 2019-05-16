@@ -28,10 +28,21 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class FileStoreService {
 
-    @Value("${server.compression.ffmpeg}")
-    private String pathToFfmpeg;
-    @Value("${server.compression.ffprobe}")
-    private String pathToFfprobe;
+    FFmpeg ffmpeg = null;
+    FFprobe ffprobe = null;
+
+    public FileStoreService(
+            @Value("${server.compression.ffmpeg}") String ffmpegPath,
+            @Value("${server.compression.ffprobe}") String ffprobePath) throws IOException {
+        ffmpeg = new FFmpeg();
+        if (!StringUtils.isEmpty(ffmpegPath))
+            ffmpeg = new FFmpeg(ffmpegPath);
+
+        ffprobe = new FFprobe();
+        if (!StringUtils.isEmpty(ffprobePath))
+            ffprobe = new FFprobe(ffprobePath);
+
+    }
 
     public enum TypeOfMedia {
         Pictures, Videos
@@ -65,15 +76,6 @@ public class FileStoreService {
     }
 
     public void convertVideo(String fileName, String format) throws IOException {
-
-        FFmpeg ffmpeg = new FFmpeg();
-        if (!StringUtils.isEmpty(pathToFfmpeg))
-            ffmpeg = new FFmpeg(pathToFfmpeg);
-
-        FFprobe ffprobe = new FFprobe();
-        if (!StringUtils.isEmpty(pathToFfprobe))
-            ffprobe = new FFprobe(pathToFfprobe);
-
         String dirPath = new StringBuilder(getHomeDir()).append(File.separator)
                 .append(TypeOfMedia.Videos).append(File.separator)
                 .append("compressed").append(File.separator)
@@ -124,6 +126,9 @@ public class FileStoreService {
                 );
             }
         }).run();
+    }
+
+    public void getThumbnailByVideo(String filePath) {
     }
 
 }
