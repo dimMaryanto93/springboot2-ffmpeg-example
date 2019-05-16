@@ -1,3 +1,22 @@
+server:
+  servlet:
+    context-path: /upload-video
+  port: 8080
+  compression:
+    min-response-size: 2KB
+    enabled: true
+    mime-types: image/jpeg, image/gif, image/png, video/mp4, video/mpeg, video/mpeg4-generic, application/octet-stream
+    ffmpeg:
+    ffprobe:
 spring:
   application:
-    name:
+    name: @project.artifactId@
+    version: @project.version@
+    fullname: @project.name@
+  mvc:
+    dispatch-options-request: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB

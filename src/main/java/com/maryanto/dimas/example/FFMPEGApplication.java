@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springboot2FfmpegCompressionApplication {
+public class FFMPEGApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Springboot2FfmpegCompressionApplication.class, args);
+		SpringApplication.run(FFMPEGApplication.class, args);
 	}
 
 }
