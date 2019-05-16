@@ -30,7 +30,7 @@ public class FileStoreService {
 
     @Value("${server.compression.ffmpeg}")
     private String pathToFfmpeg;
-    @Value("${server.compression.ffmpeg}")
+    @Value("${server.compression.ffprobe}")
     private String pathToFfprobe;
 
     public enum TypeOfMedia {

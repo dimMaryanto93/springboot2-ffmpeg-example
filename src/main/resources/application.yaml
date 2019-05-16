@@ -6,8 +6,8 @@ server:
     min-response-size: 2KB
     enabled: true
     mime-types: image/jpeg, image/gif, image/png, video/mp4, video/mpeg, video/mpeg4-generic, application/octet-stream
-    ffmpeg:
-    ffprobe:
+    ffmpeg: ${FFMPEG_PATH:ffmpeg}
+    ffprobe: ${FFPROBE_PATH:ffprobe}
 spring:
   application:
     name: @project.artifactId@
